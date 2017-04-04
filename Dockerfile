@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM comses/base
 
 ENV DEBIAN_FRONTEND=noninteractive \
 	LANG=C.UTF-8 \
@@ -8,10 +8,15 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR /tmp
 
-RUN wget --no-check-certificate --no-cookies http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz \
+RUN apt-get update && apt-get install -y --no-install-recommends openjdk-8-jdk wget \
+    && wget --no-check-certificate --no-cookies http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz \
     && wget --no-check-certificate --no-cookies http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz.md5 \
     && echo "$(cat apache-ant-${ANT_VERSION}-bin.tar.gz.md5) apache-ant-${ANT_VERSION}-bin.tar.gz" | md5sum -c - \
     && tar -zvxf apache-ant-${ANT_VERSION}-bin.tar.gz -C /opt/ \
-    && ln -s /opt/apache-ant-${ANT_VERSION} /opt/ant \
+    && ln -sf /opt/apache-ant-${ANT_VERSION} /opt/ant \
     && rm -f apache-ant-${ANT_VERSION}-bin.tar.gz* \
-    && update-alternatives --install /usr/bin/ant ant /opt/ant/bin/ant 1000
+    && update-alternatives --install /usr/bin/ant ant /opt/ant/bin/ant 1000 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /code
+USER $COMSES_USER

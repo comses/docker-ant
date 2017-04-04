@@ -1,2 +1,2 @@
 # docker-ant
-Base Dockerfile for Apache Ant Java apps.
+Dockerfile for [Apache Ant](http://ant.apache.org) based Java apps.
