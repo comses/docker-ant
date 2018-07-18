@@ -1,4 +1,4 @@
-FROM comses/base:1.0.1
+FROM comses/base:1.1.1
 
 ENV DEBIAN_FRONTEND=noninteractive \
 	LANG=C.UTF-8 \
