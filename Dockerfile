@@ -5,8 +5,8 @@ LABEL maintainer="allen.lee@asu.edu"
 ENV DEBIAN_FRONTEND=noninteractive \
 	LANG=C.UTF-8 \
 	LC_ALL=C.UTF-8 \
-	ANT_VERSION=1.10.5 \
-    ANT_MIRROR=http://apache.cs.utah.edu \
+	ANT_VERSION=1.10.9 \
+    ANT_MIRROR=https://downloads.apache.org \
 	ANT_HOME=/opt/ant
 
 WORKDIR /tmp
