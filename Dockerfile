@@ -1,4 +1,4 @@
-FROM comses/base:1.2.0
+FROM comses/base:1.3.0
 
 LABEL maintainer="allen.lee@asu.edu"
 
