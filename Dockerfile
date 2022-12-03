@@ -1,17 +1,17 @@
-FROM comses/base:1.3.0
+FROM comses/base:jammy
 
 LABEL maintainer="allen.lee@asu.edu"
 
 ENV DEBIAN_FRONTEND=noninteractive \
 	LANG=C.UTF-8 \
 	LC_ALL=C.UTF-8 \
-	ANT_VERSION=1.10.9 \
+	ANT_VERSION=1.10.12 \
     ANT_MIRROR=https://downloads.apache.org \
 	ANT_HOME=/opt/ant
 
 WORKDIR /tmp
 
-RUN apt-get update && apt-get install -y --no-install-recommends openjdk-8-jdk wget \
+RUN apt-get update && apt-get install -y --no-install-recommends openjdk-11-jdk wget \
     && wget --no-check-certificate --no-cookies ${ANT_MIRROR}/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz \
 # FIXME: add PGP checking: https://ant.apache.org/bindownload.cgi?Preferred=http%3A%2F%2Fapache.cs.utah.edu%2F
     # && wget --no-check-certificate --no-cookies ${ANT_MIRROR}/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz.md5 \
